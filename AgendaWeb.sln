@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROXY", "PROXY\PROXY.csproj", "{E2AB4DC8-05CD-46C0-BB5E-F3C0E53F8966}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PROXY", "PROXY\PROXY.csproj", "{E2AB4DC8-05CD-46C0-BB5E-F3C0E53F8966}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PORTAL", "PORTAL\", "{273F4FB7-58E2-4CA6-B09A-2BD5CFF5A5B1}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -25,6 +25,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PORTAL", "PORTAL\", "{273F4
 		VWDPort = "55874"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SERVICES", "SERVICES\SERVICES.csproj", "{CEAD1AAA-3905-4A7B-AB10-5D4F5E83ADBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{273F4FB7-58E2-4CA6-B09A-2BD5CFF5A5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{273F4FB7-58E2-4CA6-B09A-2BD5CFF5A5B1}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{273F4FB7-58E2-4CA6-B09A-2BD5CFF5A5B1}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{CEAD1AAA-3905-4A7B-AB10-5D4F5E83ADBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEAD1AAA-3905-4A7B-AB10-5D4F5E83ADBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEAD1AAA-3905-4A7B-AB10-5D4F5E83ADBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEAD1AAA-3905-4A7B-AB10-5D4F5E83ADBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
