@@ -8,6 +8,7 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewEventComponent } from '../new-event/new-event.component';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-calendar',
@@ -15,7 +16,11 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
-  constructor(public dialog: MatDialog, public translateService: TranslateService) { }
+  constructor(public dialog: MatDialog, public translateService: TranslateService, private http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.test();
+  }
 
   // Initialize calendar with options
   calendarOptions: CalendarOptions = {
@@ -76,6 +81,20 @@ export class CalendarComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  test(){
+    const proxyUrl = 'http://localhost:8888/api/proxy'; // Reemplaza con la URL y puerto correctos
+
+    this.http.get(proxyUrl).subscribe({
+      next: (responseData) => {
+        let data = responseData;
+        console.log('Respuesta del servidor:', data);
+      },
+      error: (error) => {
+        console.error('Error al hacer la solicitud:', error);
+      }
     });
   }
 
