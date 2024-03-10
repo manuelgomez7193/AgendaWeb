@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using SERVICES.Contexts;
+using SERVICES.Models;
+using System.Text.Json.Serialization;
 
 namespace SERVICES.Controllers
 {
@@ -8,18 +11,21 @@ namespace SERVICES.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly ApplicationDbContext _context; // Inyectamos el DbContext en el constructor
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> GetWeatherForecast()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -28,6 +34,13 @@ namespace SERVICES.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet("Test", Name = "Test")]
+        public IActionResult Test()
+        {
+            List<Producto> productos = this._context.Productos.Where(x => x.Nombre.StartsWith("Producto")).ToList();
+            return Ok(new { message = "Funciono paaaa", data = productos });
         }
     }
 }

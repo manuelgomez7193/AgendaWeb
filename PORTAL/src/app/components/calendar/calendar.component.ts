@@ -8,7 +8,7 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewEventComponent } from '../new-event/new-event.component';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-calendar',
@@ -86,8 +86,14 @@ export class CalendarComponent {
 
   test(){
     const proxyUrl = 'http://localhost:8888/api/proxy'; // Reemplaza con la URL y puerto correctos
+    let valor1 = "Test";
+    let valor2 = "valor2";
 
-    this.http.get(proxyUrl).subscribe({
+    const queryParams = new HttpParams()
+    .set('parametro1', valor1)
+    .set('parametro2', valor2);
+
+    this.http.get(proxyUrl, { params: queryParams }).subscribe({
       next: (responseData) => {
         let data = responseData;
         console.log('Respuesta del servidor:', data);

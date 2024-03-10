@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Net;
 
 class Program
@@ -36,12 +37,21 @@ class Program
             // Obtiene la solicitud HTTP del cliente.
             HttpListenerRequest request = context.Request;
 
+            // Accede a los parámetros de consulta.
+            NameValueCollection queryParams = request.QueryString;
+
+            // Recupera los valores de los parámetros de consulta.
+            string parametro1 = queryParams["parametro1"];
+            string parametro2 = queryParams["parametro2"];
+
             // Verifica si la solicitud se realiza en la ruta /api/proxy.
             if (request.Url.AbsolutePath.Equals("/api/proxy", StringComparison.OrdinalIgnoreCase))
             {
                 // Procesa la solicitud en la ruta /api/proxy.
 
                 string serviciosUrl = "https://localhost:44379/WeatherForecast";
+
+                serviciosUrl += $"/{parametro1}";
 
                 // Crea una solicitud al servidor de destino (tu controlador).
                 HttpWebRequest proxyRequest = (HttpWebRequest)WebRequest.Create(serviciosUrl);
